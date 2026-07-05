@@ -11,6 +11,10 @@ from app.settings.serializers import CategorySerializers, ProductSerializer
 class CategoryAPIView(ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializers
+    
+    def perform_create(self, serializer):
+        serializer.save()
+        cache.clear()
 
 class CategoryCreateAPIView(CreateAPIView):
     queryset = Category.objects.all()
@@ -42,32 +46,32 @@ class CategoryDeleteAPIView(DestroyAPIView):
 
 @method_decorator(cache_page(60*5), name="dispatch")
 class ProductListAPIView(ListAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializers
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
 class ProductCreateAPIView(CreateAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializers
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
     def perform_create(self, serializer):
         serializer.save()
         cache.clear() 
 
 class ProductReadAPIView(RetrieveAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializers
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
 class ProductUpdateAPIView(UpdateAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializers
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
     def perform_create(self, serializer):
         serializer.save()
         cache.clear()
 
 class ProductDeleteAPIView(DestroyAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializers
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
     def perform_create(self, serializer):
         serializer.save()
