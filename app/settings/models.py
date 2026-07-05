@@ -35,8 +35,7 @@ class Product(models.Model):
         auto_now_add=True,
         verbose_name="Дата создание"
     )
-    price = models.CharField(
-        max_length=25,
+    price = models.IntegerField(
         verbose_name="Цена"
     )
 
