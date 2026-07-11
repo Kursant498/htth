@@ -1,5 +1,6 @@
 asgiref==3.11.1
 Django==5.2.15
+django-filter==25.2
 django-jazzmin==2.6.0
 django-redis==7.0.0
 djangorestframework==3.17.1
