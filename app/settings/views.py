@@ -1,4 +1,5 @@
-
+from rest_framework.generics import ListAPIView, CreateAPIView,\
+RetrieveAPIView, UpdateAPIView, DestroyAPIView
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.core.cache import cache
@@ -55,10 +56,6 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 
 class CategoryViewSet(
     mixins.ListModelMixin,
-    mixins.CreateModelMixin,
-    mixins.RetrieveModelMixin,
-    mixins.UpdateModelMixin,
-    mixins.DestroyModelMixin,
     GenericViewSet
 ):
     queryset = Category.objects.all()
