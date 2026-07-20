@@ -5,24 +5,25 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from app.users.models import User
 from app.users.serializers import RegisterSerializer
 from rest_framework.permissions import IsAuthenticated
-
 class RegisterViewSet(
     mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
     viewsets.GenericViewSet
 ):
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
 
-    def create(self, reqyest, *args, **kwargs):
-        serialiser = self.get_serializer(data=reqyest.data)
-        serialiser.is_valid(raise_exception=True)
-        serialiser.save()
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
         return Response(
             {
                 "message": "User created successfully"
             },
             status=status.HTTP_201_CREATED
         )
+
 
 class LoginViewSet(
     viewsets.GenericViewSet
